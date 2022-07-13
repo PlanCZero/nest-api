@@ -1,0 +1,15 @@
+### get list of user
+GET http://localhost:3000/user
+
+### Create new user
+POST http://localhost:3000/user/create
+Content-Type: application/json
+
+{
+    "username":"planczero",
+    "email":"wut@gmail.com",
+    "password":"@denver188"
+}
+
+### Get by ID
+GET http://localhost:3000/messages/123
