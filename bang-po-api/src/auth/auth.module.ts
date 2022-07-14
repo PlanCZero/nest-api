@@ -20,7 +20,7 @@ import { AuthController } from './controller/auth.controller';
     }),
     TypeOrmModule.forFeature([Users]),
   ],
-  providers: [AuthService],
+  providers: [AuthService,LocalStrategy,JwtStrategy],
   controllers: [AuthController]
 })
 export class AuthModule { }

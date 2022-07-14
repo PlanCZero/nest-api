@@ -6,10 +6,29 @@ POST http://localhost:3000/user/create
 Content-Type: application/json
 
 {
-    "username":"planczero",
-    "email":"wut@gmail.com",
-    "password":"@denver188"
+    "username":"planczero1",
+    "password":"@denver188",
+    "role":"admin"
 }
 
 ### Get by ID
 GET http://localhost:3000/messages/123
+
+### JWT signup 
+POST http://localhost:3000/api/v1/auth/signup
+Content-Type: application/json
+
+{
+    "username":"planczero2",
+    "password":"@denver188",
+    "role":"admin"
+}
+
+### JWT login
+POST http://localhost:3000/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "username":"planczero2",
+    "password":"@denver188"
+}
