@@ -1,7 +1,9 @@
-/* eslint-disable prettier/prettier */
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, OneToOne, JoinColumn, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
+import { CartEntity } from './cart.entity';
+import { OrderEntity } from './order.entity';
+
 @Entity()
-export class User {
+export class Users {
   @PrimaryGeneratedColumn({
     type: 'bigint',
     name: 'user_id',
@@ -14,16 +16,23 @@ export class User {
   })
   username: string;
 
-  @Column({
-    name: 'email_address',
-    nullable: false,
-    default: '',
-  })
-  email: string;
+  @Column()
+  password: string
 
-  @Column({
-    nullable: false,
-    default: '',
-  })
-  password: string;
+  @Column()
+  role: string
+
+  @CreateDateColumn()
+  createdAt: String
+
+  @UpdateDateColumn()
+  updtedAt: String
+
+  @OneToMany(type => CartEntity, cart => cart.id)
+  @JoinColumn()
+  cart: CartEntity[]
+
+  @OneToOne(type => OrderEntity, order => order.id)
+  @JoinColumn()
+  order: OrderEntity;
 }
