@@ -1,8 +1,8 @@
 import { Entity, JoinColumn, OneToMany, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn } from 'typeorm'
-import { CartEntity } from './cart.entity'
+import { Carts } from './cart.entity'
 
 @Entity()
-export class ProductEntity {
+export class Products {
   @PrimaryGeneratedColumn("uuid")
   id!: number
 
@@ -21,7 +21,7 @@ export class ProductEntity {
   @UpdateDateColumn()
   updtedAt: String
 
-  @OneToMany(type => CartEntity, cart => cart.id)
+  @OneToMany(type => Carts, cart => cart.id)
   @JoinColumn()
-  cart: CartEntity[]
+  cart: Carts[]
 }

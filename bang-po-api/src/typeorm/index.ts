@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 import { Users } from "./user.entity";
-import { OrderEntity } from "./order.entity";
-import { ProductEntity } from "./product.entity";
-import { CartEntity } from "./cart.entity";
+import { Orders } from "./order.entity";
+import { Products } from "./product.entity";
+import { Carts } from "./cart.entity";
 
-const entities = [Users, , OrderEntity, ProductEntity, CartEntity];
+const entities = [Users, , Orders, Products, Carts];
 
-export { Users, OrderEntity, ProductEntity, CartEntity };
+export { Users, Orders, Products, Carts };
 export default entities;

@@ -1,15 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CartEntity } from 'src/typeorm/cart.entity';
+import { Users, Carts } from 'src/typeorm';
 import { ProductsService } from 'src/product/service/product.service';
-import { Users } from 'src/typeorm/user.entity';
 
 @Injectable()
 export class CartService {
   constructor(
-    @InjectRepository(CartEntity)
-    private cartRepository: Repository<CartEntity>,
+    @InjectRepository(Carts)
+    private cartRepository: Repository<Carts>,
     @InjectRepository(Users)
     private userRepository: Repository<Users>,
     private productsService: ProductsService,
@@ -45,7 +44,7 @@ export class CartService {
     }
     return null;
   }
-  async getItemsInCard(user: string): Promise<CartEntity[]> {
+  async getItemsInCard(user: string): Promise<Carts[]> {
     const userCart = await this.cartRepository.find({ relations: ["item", 'user'] });
     return (await userCart).filter(item => item.user.username === user)
   }

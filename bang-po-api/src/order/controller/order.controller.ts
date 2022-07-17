@@ -1,6 +1,6 @@
 import { Controller, Post, Get, Request, UseGuards } from '@nestjs/common';
 import { OrderService } from '../service/order.service'
-import { OrderEntity } from 'src/typeorm/order.entity';
+import { Orders } from 'src/typeorm';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('api/v1/order')
@@ -16,7 +16,7 @@ export class OrderController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  async getOrders(@Request() req): Promise<OrderEntity[]> {
+  async getOrders(@Request() req): Promise<Orders[]> {
     return await this.orderService.getOrders(req.user.username)
   }
 }

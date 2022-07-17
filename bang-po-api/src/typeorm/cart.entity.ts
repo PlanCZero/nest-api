@@ -1,10 +1,8 @@
 import { Entity, OneToOne, ManyToOne, JoinColumn, Column, PrimaryGeneratedColumn } from 'typeorm'
-import { OrderEntity } from './order.entity'
-import { ProductEntity } from './product.entity'
-import { Users } from './user.entity'
+import {Users, Products, Orders } from './index'
 
 @Entity()
-export class CartEntity {
+export class Carts {
    @PrimaryGeneratedColumn('uuid')
    id: number
 
@@ -14,9 +12,9 @@ export class CartEntity {
    @Column()
    quantity: number
 
-   @ManyToOne(type => ProductEntity, order => order.id)
+   @ManyToOne(type => Products, order => order.id)
    @JoinColumn()
-   item: ProductEntity
+   item: Products
 
    @ManyToOne(type => Users, user => user.username)
    @JoinColumn()

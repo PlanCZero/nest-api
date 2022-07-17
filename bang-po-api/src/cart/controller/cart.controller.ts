@@ -1,6 +1,6 @@
 import { Controller, Post, Get, Request, Delete, Body, UseGuards } from '@nestjs/common';
 import { CartService } from '../service/cart.service';
-import { CartEntity } from 'src/typeorm/cart.entity';
+import { Carts } from 'src/typeorm';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('api/v1/cart')
@@ -16,7 +16,7 @@ export class CartController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  async getItemsInCart(@Request() req): Promise<CartEntity[]> {
+  async getItemsInCart(@Request() req): Promise<Carts[]> {
     return await this.cartService.getItemsInCard(req.user.username);
 
   }

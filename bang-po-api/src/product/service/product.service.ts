@@ -1,18 +1,17 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { ProductEntity } from 'src/typeorm/product.entity';
+import {Users, Products } from 'src/typeorm';
 import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Users } from 'src/typeorm/user.entity';
 
 @Injectable()
 export class ProductsService {
-  constructor(@InjectRepository(ProductEntity) private productRepository: Repository<ProductEntity>) { }
+  constructor(@InjectRepository(Products) private productRepository: Repository<Products>) { }
 
-  async getAll(): Promise<ProductEntity[]> {
+  async getAll(): Promise<Products[]> {
     return await this.productRepository.find()
   }
 
-  async create(product: ProductEntity, user: Users): Promise<ProductEntity> {
+  async create(product: Products, user: Users): Promise<Products> {
     if (user.role == 'admin') {
       return await this.productRepository.save(product);
 
@@ -21,11 +20,11 @@ export class ProductsService {
 
   }
 
-  async getOne(id: number): Promise<ProductEntity> {
+  async getOne(id: number): Promise<Products> {
     return this.productRepository.findOne({ where: { id: id } });
   }
 
-  async update(id: number, product: ProductEntity, user: Users): Promise<UpdateResult> {
+  async update(id: number, product: Products, user: Users): Promise<UpdateResult> {
     if (user.role == 'admin') {
       return await this.productRepository.update(id, product);
     }

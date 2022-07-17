@@ -1,14 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { OrderEntity } from 'src/typeorm/order.entity';
+import { Users, Orders } from 'src/typeorm';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CartService } from 'src/cart/service/cart.service';
-import { Users } from 'src/typeorm/user.entity';
 
 @Injectable()
 export class OrderService {
-  constructor(@InjectRepository(OrderEntity)
-  private orderRepository: Repository<OrderEntity>,
+  constructor(@InjectRepository(Orders)
+  private orderRepository: Repository<Orders>,
     @InjectRepository(Users)
     private userRepository: Repository<Users>,
     private cartService: CartService) { }
@@ -39,7 +38,7 @@ export class OrderService {
     }
   }
 
-  async getOrders(user: string): Promise<OrderEntity[]> {
+  async getOrders(user: string): Promise<Orders[]> {
     const orders = await this.orderRepository.find({ relations: ['user'] });
     return orders.filter(order => order.user?.username === user)
   }

@@ -1,6 +1,5 @@
 import { Entity, OneToOne, JoinColumn, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
-import { CartEntity } from './cart.entity';
-import { OrderEntity } from './order.entity';
+import { Carts ,Orders} from './index';
 
 @Entity()
 export class Users {
@@ -28,11 +27,11 @@ export class Users {
   @UpdateDateColumn()
   updtedAt: String
 
-  @OneToMany(type => CartEntity, cart => cart.id)
+  @OneToMany(type => Carts, cart => cart.id)
   @JoinColumn()
-  cart: CartEntity[]
+  cart: Carts[]
 
-  @OneToOne(type => OrderEntity, order => order.id)
+  @OneToOne(type => Orders, order => order.id)
   @JoinColumn()
-  order: OrderEntity;
+  order: Orders;
 }

@@ -1,14 +1,13 @@
 import { Entity, OneToMany, JoinColumn, OneToOne, Column, PrimaryGeneratedColumn } from 'typeorm'
-import { ProductEntity } from './product.entity';
-import { Users } from './user.entity';
+import { Users, Products } from './index';
 
 @Entity()
-export class OrderEntity {
+export class Orders {
    @PrimaryGeneratedColumn('uuid')
    id: number
 
-   @OneToMany(type => ProductEntity, item => item.id)
-   items: ProductEntity[];
+   @OneToMany(type => Products, item => item.id)
+   items: Products[];
 
    @OneToOne(type => Users, user => user.username)
    @JoinColumn()

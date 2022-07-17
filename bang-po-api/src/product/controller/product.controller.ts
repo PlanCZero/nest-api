@@ -1,7 +1,7 @@
 import { Controller, Post, Get, Put, Delete, Param, Request, Body, UseGuards } from '@nestjs/common';
 import { UpdateResult, DeleteResult } from 'typeorm';
 import { ProductsService } from '../service/product.service';
-import { ProductEntity } from 'src/typeorm/product.entity';
+import { Products } from 'src/typeorm';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('api/v1/products')
@@ -10,28 +10,28 @@ export class ProductsController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
-  async GetAll(): Promise<ProductEntity[]> {
+  async GetAll(): Promise<Products[]> {
     return await this.productsService.getAll();
 
   }
 
   @UseGuards(JwtAuthGuard)
   @Post()
-  async Create(@Request() req, @Body() product: ProductEntity): Promise<ProductEntity> {
+  async Create(@Request() req, @Body() product: Products): Promise<Products> {
     return await this.productsService.create(product, req.user);
   }
 
 
   @UseGuards(JwtAuthGuard)
   @Get(':id')
-  async GetOne(@Param() id: number): Promise<ProductEntity> {
+  async GetOne(@Param() id: number): Promise<Products> {
     return await this.productsService.getOne(id);
 
   }
 
   @UseGuards(JwtAuthGuard)
   @Put(':id')
-  async Update(@Param() id: number, @Body() product: ProductEntity, @Request() req): Promise<UpdateResult> {
+  async Update(@Param() id: number, @Body() product: Products, @Request() req): Promise<UpdateResult> {
     return await this.productsService.update(id, product, req.user);
 
   }
