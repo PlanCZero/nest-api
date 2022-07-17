@@ -1,6 +1,7 @@
-import { Entity, JoinColumn, OneToMany, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn } from 'typeorm'
+import { Entity, JoinColumn, OneToMany, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
 import { Carts } from './cart.entity'
-
+import { Quotations } from './quotation.entity';
+import { Company } from './company.entity';
 @Entity()
 export class Products {
   @PrimaryGeneratedColumn("uuid")
@@ -24,4 +25,12 @@ export class Products {
   @OneToMany(type => Carts, cart => cart.id)
   @JoinColumn()
   cart: Carts[]
+
+  @OneToMany(type => Quotations, quotation => quotation.id)
+  @JoinColumn()
+  quotations: Quotations[]
+
+  @ManyToOne(type => Company, company => company.id)
+  @JoinColumn()
+  company: Company
 }

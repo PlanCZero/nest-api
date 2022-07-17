@@ -1,5 +1,5 @@
 import { Entity, OneToMany, JoinColumn, OneToOne, Column, PrimaryGeneratedColumn } from 'typeorm'
-import { Users, Products } from './index';
+import { Users, Products, Quotations, Invoices } from './index';
 
 @Entity()
 export class Orders {
@@ -19,4 +19,11 @@ export class Orders {
    @Column({ default: false })
    pending: boolean
 
+   @OneToOne(type => Quotations, quotation => quotation.id)
+   @JoinColumn()
+   quotation: Quotations
+
+   @OneToOne(type => Invoices, invoice => invoice.id)
+   @JoinColumn()
+   invoice: Invoices
 }

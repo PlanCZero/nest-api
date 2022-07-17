@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProductModule } from './product/product.module';
 import { CartModule } from './cart/cart.module';
 import { OrderModule } from './order/order.module';
+import { QuotationModule } from './quotation/quotation.module';
 // import configuration from './config/config.service';
 import entities from './entities';
 @Module({
@@ -36,6 +37,7 @@ import entities from './entities';
     ProductModule,
     CartModule,
     OrderModule,
+    QuotationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
