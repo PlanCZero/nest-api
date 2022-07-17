@@ -5,7 +5,7 @@ import { JwtStrategy } from './jwt.strategy';
 import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './local.strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Users } from 'src/typeorm';
+import { Users } from 'src/entities';
 
 import { AuthService } from './service/auth.service';
 import { AuthController } from './controller/auth.controller';

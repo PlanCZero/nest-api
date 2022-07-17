@@ -10,7 +10,7 @@ import { ProductModule } from './product/product.module';
 import { CartModule } from './cart/cart.module';
 import { OrderModule } from './order/order.module';
 // import configuration from './config/config.service';
-import entities from './typeorm';
+import entities from './entities';
 @Module({
   imports: [
     ConfigModule.forRoot({

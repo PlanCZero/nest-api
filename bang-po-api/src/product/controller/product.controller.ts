@@ -1,7 +1,7 @@
 import { Controller, Post, Get, Put, Delete, Param, Request, Body, UseGuards } from '@nestjs/common';
 import { UpdateResult, DeleteResult } from 'typeorm';
 import { ProductsService } from '../service/product.service';
-import { Products } from 'src/typeorm';
+import { Products } from 'src/entities';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('api/v1/products')

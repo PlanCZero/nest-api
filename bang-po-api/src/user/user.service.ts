@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Users } from 'src/typeorm';
+import { Users } from 'src/entities';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/user.dto';
 @Injectable()

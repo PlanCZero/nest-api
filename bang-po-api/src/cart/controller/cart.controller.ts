@@ -1,6 +1,6 @@
 import { Controller, Post, Get, Request, Delete, Body, UseGuards } from '@nestjs/common';
 import { CartService } from '../service/cart.service';
-import { Carts } from 'src/typeorm';
+import { Carts } from 'src/entities';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('api/v1/cart')
